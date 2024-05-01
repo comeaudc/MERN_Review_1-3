@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import TodoList from './components/TodoList';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -98,35 +99,15 @@ function App() {
 
   return (
     <>
-      Add ToDo:{' '}
-      <input
-        type='text'
-        value={newTodo.title}
-        onChange={(e) => {
-          setNewTodo({ ...newTodo, title: e.target.value });
-        }}
-        onKeyDown={(e) => {
-          e.key === 'Enter' && createTodo();
-        }}
+      <TodoList
+        newTodo={newTodo}
+        setNewTodo={setNewTodo}
+        createTodo={createTodo}
+        todos={todos}
+        completedTodos={completedTodos}
+        moveToCompleted={moveToCompleted}
+        deleteTodo={deleteTodo}
       />
-      <h3>Todos</h3>
-      {todos.map((el) => {
-        return (
-          <div key={el._id}>
-            {el.title}{' '}
-            <button onClick={() => moveToCompleted(el._id)}>Completed</button>
-          </div>
-        );
-      })}
-      <h3>Completed Todos:</h3>
-      {completedTodos.map((el) => {
-        return (
-          <div key={el._id}>
-            {el.title}{' '}
-            <button onClick={() => deleteTodo(el._id)}>Delete</button>
-          </div>
-        );
-      })}
     </>
   );
 }
