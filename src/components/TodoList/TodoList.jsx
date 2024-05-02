@@ -1,4 +1,5 @@
-import Todo from './Todo';
+import Todo from '../Todo/Todo';
+import styles from './TodoList.module.scss'
 
 const TodoList = ({
   newTodo,
@@ -10,9 +11,10 @@ const TodoList = ({
   deleteTodo,
 }) => {
   return (
-    <>
+    <div className={styles.todoList}>
       Add New Todo:
       <input
+      className={styles.input}
         type='text'
         value={newTodo.title}
         onChange={(e) => {
@@ -44,7 +46,7 @@ const TodoList = ({
           />
         );
       })}
-    </>
+    </div>
   );
 };
 
